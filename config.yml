@@ -56,12 +56,12 @@ params:
 
   # profile-mode
   profileMode:
-    enabled: false # needs to be explicitly set
+    enabled: true # needs to be explicitly set
     title: Hi there
     subtitle: "My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class. I go by he/him."
-    imageUrl: "images/pmos-table.png"
-    imageWidth: 120
-    imageHeight: 120
+    imageUrl: "images/portrait-redacted.jpg"
+    imageWidth: 600
+    imageHeight: 400
     imageTitle: my image
     buttons:
       - name: Posts
@@ -72,7 +72,8 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Hi there"
-    Content: My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class. I go by he/him. {{< figure src=images/pmos-table.png  >}}
+    Content: "My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class. I go by he/him. 
+    ![The PostmarketOS Table of hardware](images/portrait-redacted.jpg#center)"
 
     
 
