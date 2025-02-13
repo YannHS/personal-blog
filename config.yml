@@ -57,21 +57,21 @@ params:
   # profile-mode
   profileMode:
     enabled: true # needs to be explicitly set
-    title: Hi there
+    title: Hi there!
     subtitle: "My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class. I go by he/him."
     imageUrl: "images/portrait-redacted.jpg"
     imageWidth: 600
-    imageHeight: 400
+    imageHeight: 600
     imageTitle: my image
     buttons:
       - name: Posts
         url: posts
-      - name: Tags
-        url: tags
+      #- name: Tags
+      #  url: tags
 
   # home-info mode
   homeInfoParams:
-    Title: "Hi there"
+    Title: "Hi there!"
     Content: "My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class. I go by he/him. 
     ![The PostmarketOS Table of hardware](images/portrait-redacted.jpg#center)"
 
@@ -79,7 +79,7 @@ params:
 
   socialIcons:
     - name: email
-      url: "contact@dierolf.ca"
+      url: "mailto:contact@dierolf.ca"
     - name: github
       url: "https://github.com/YannHS"
     - name: gitlab
@@ -118,10 +118,10 @@ menu:
       name: Posts
       url: /posts/
       weight: 5
-    - identifier: categories
-      name: Categories
-      url: /categories/
-      weight: 10
+    #- identifier: categories
+     # name: Categories
+      #url: /categories/
+      #weight: 10
     - identifier: tags
       name: Tags
       url: /tags/
