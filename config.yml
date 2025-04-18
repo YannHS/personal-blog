@@ -1,6 +1,6 @@
 baseURL: "https://dierolf.ca/"
 title: Yannick's Blog
-paginate: 5
+pagination.pagerSize: 5
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -54,11 +54,12 @@ params:
     # icon: /home.svg
     iconHeight: 35
 
+
   # profile-mode
   profileMode:
     enabled: true # needs to be explicitly set
     title: Hi there!
-    subtitle: "My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class. I go by he/him."
+    subtitle: "My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class."
     imageUrl: "images/portrait-redacted.jpg"
     imageWidth: 200
     imageHeight: 200
@@ -68,11 +69,31 @@ params:
         url: posts
       #- name: Tags
       #  url: tags
+    images:
+    - image: "8831/hugo.gif"
+      url: "https://gohugo.io/"
+    - image: "8831/right2repair.gif"
+    - image: "8831/iamv2.gif"
+    - image: "8831/gh-pages-bo.gif"
+    - image: "8831/fftake.gif"
+      url: "https://www.mozilla.org"
+    - image: "8831/fediverse.gif"
+      url: "https://jointhefediverse.net/join"
+    - image: "8831/grapheneos.gif"
+      url: "https://grapheneos.org/"
+    - image: "8831/88by31.gif"
+      url: "https://cyber.dabamos.de/88x31/"
+    - image: "8831/shorky.gif"
+      url: "https://www.ikea.com/ca/en/p/blahaj-soft-toy-shark-90373590/"
+    - image: "8831/pmos.gif"
+      url: "https://postmarketos.org/"
+
+
 
   # home-info mode
   homeInfoParams:
     Title: "Hi there!"
-    Content: "My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class. I go by he/him. 
+    Content: "My interests lie in Urbanism, Computers, Linux, and XR. I'm currently learning in uOttawa's 2030 Computer Engineering class. 
     ![The PostmarketOS Table of hardware](images/portrait-redacted.jpg#center)"
 
     

@@ -1,0 +1,108 @@
+<div class="profile">
+    {{- with site.Params.profileMode }}
+    <div class="profile_inner">
+        {{- if .imageUrl -}}
+        {{- $img := "" }}
+        {{- if not (urls.Parse .imageUrl).IsAbs }}
+            {{- $img = resources.Get .imageUrl }}
+        {{- end }}
+        {{- if $img }}
+            {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+            {{- if hugo.IsExtended -}}
+                {{- $processableFormats = $processableFormats | append "webp" -}}
+            {{- end -}}
+            {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+            {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
+                {{- if (not (and (not .imageHeight) (not .imageWidth))) }}
+                    {{- $img = $img.Resize (printf "%dx%d" .imageWidth .imageHeight) }}
+                {{- else if .imageHeight }}
+                    {{- $img = $img.Resize (printf "x%d" .imageHeight) }}
+                {{ else if .imageWidth }}
+                    {{- $img = $img.Resize (printf "%dx" .imageWidth) }}
+                {{ else }}
+                    {{- $img = $img.Resize "150x150" }}
+                {{- end }}
+            {{- end }}
+            <img draggable="false" src="{{ $img.Permalink }}" alt="{{ .imageTitle | default "profile image" }}" title="{{ .imageTitle }}"
+                height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+        {{- else }}
+        <img draggable="false" src="{{ .imageUrl | absURL }}" alt="{{ .imageTitle | default "profile image" }}" title="{{ .imageTitle }}"
+            height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+        {{- end }}
+        {{- end }}
+        <h1>{{ .title | default site.Title | markdownify }}</h1>
+        <span>{{ .subtitle | markdownify }}</span>
+        {{- partial "social_icons.html" -}}
+
+        {{- with .buttons }}
+        <div class="buttons">
+            {{- range . }}
+            <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name }}">
+                <span class="button-inner">
+                    {{ .name }}
+                    {{- if (findRE "://" .url) }}&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="14" width="14">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                    {{- end }}
+                </span>
+            </a>
+            {{- end }}
+        </div>
+        {{- end }}
+        
+        
+{{- with .images }}
+<div class="profile-images" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+  {{- range . }}
+    {{- $itemType := printf "%T" . | lower }}
+    {{- $imgPath := "" }}
+    {{- $link := "" }}
+    {{- if eq $itemType "string" }}
+      {{- /* If the item is a string, use it as the image path directly */ -}}
+      {{- $imgPath = . -}}
+    {{- else if eq $itemType "map[string]interface {}" }}
+      {{- /* Assume it's a map with keys "image" and optionally "url" */ -}}
+      {{- $imgPath = index . "image" | default "" -}}
+      {{- with index . "url" }}
+        {{- $link = . -}}
+      {{- end }}
+    {{- end }}
+
+    {{- if $imgPath }}
+      {{- /* Convert $imgPath to a string explicitly */ -}}
+      {{- $imgPathStr := $imgPath | printf "%s" -}}
+      {{- $imgRes := "" -}}
+      {{- if not (urls.Parse $imgPathStr).IsAbs }}
+        {{- $imgRes = resources.Get $imgPathStr -}}
+      {{- end -}}
+      {{- $imgURL := "" -}}
+      {{- if $imgRes }}
+        {{- $imgURL = $imgRes.Permalink -}}
+      {{- else }}
+        {{- $imgURL = $imgPathStr | absURL -}}
+      {{- end -}}
+
+      {{- if $link }}
+        <a href="{{ $link | absURL }}" title="Click for more details" rel="noopener">
+      {{- end }}
+      
+      <img class="profile-extra-image profile-extra-image--square" src="{{ $imgURL }}" alt="Extra image" style="border-radius: 0;" />
+      
+      {{- if $link }}
+        </a>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+</div>
+{{- end }}
+
+
+        
+        
+    </div>
+    {{- end}}
+</div>
